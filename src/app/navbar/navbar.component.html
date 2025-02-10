@@ -1,0 +1,36 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <a href="#" class="navbar-brand">
+        <img src="assets/images/chipbackground.jpg" width="50" height="50" alt="CoolBrand">
+      </a>
+      <a href="#" class="navbar-brand">Chip Advisor</a>
+      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav">
+          <a href="#" class="nav-item nav-link">Comments</a>
+          <a href="#" class="nav-item nav-link">Reports</a>
+  
+          <!-- Dropdown to show users -->
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+              Users
+            </a>
+            <div class="dropdown-menu">
+              <a *ngFor="let user of users" href="#" class="dropdown-item">
+                {{ user.name }} <!-- Display user name or other property -->
+              </a>
+            </div>
+          </div>
+        </div>
+  
+        <div class="navbar-nav ms-auto">
+          <a href="#" class="nav-item nav-link">Login</a>
+          <a href="#" class="nav-item nav-link">Register</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  

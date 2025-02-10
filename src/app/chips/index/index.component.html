@@ -1,0 +1,10 @@
+<div class="row">
+    <div *ngFor="let review of reviews" class="col-lg-2 col-md-4 col-sm-6 col-12 mb-3">
+        <div class="card" (click)="navigateToReview(review.id)" style="cursor: pointer;" class="p-5 border mt-2">
+            <img  src="{{ review.img }}" class="img img-fluid card-img-top rounded"  alt="User Image">
+            <div class="card-body">
+                <h5 class="card-title">{{ review.name }}</h5>
+            </div>
+        </div>
+    </div>
+</div>

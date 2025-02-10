@@ -1,0 +1,21 @@
+import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';  // Import RouterModule for routing
+import { HttpClientModule } from '@angular/common/http';  // Import HttpClientModule here
+import { NavbarComponent } from './navbar/navbar.component';
+import { ApiService } from './api.service';  // Import ApiService
+import { IndexComponent } from './chips/index/index.component';  // Import IndexComponent
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [NavbarComponent, HttpClientModule, IndexComponent, RouterModule],  // Add RouterModule here
+  providers: [ApiService],  // Provide the ApiService globally
+  template: `
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet> <!-- This will display the routed component -->
+  `,
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  title = 'Chip Advisor';
+}

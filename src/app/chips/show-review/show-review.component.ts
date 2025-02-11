@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
-import { ActivatedRoute } from '@angular/router';  // Import ActivatedRoute to access route parameters
+import { ActivatedRoute } from '@angular/router';  
+import { ShowcommentsbyreviewComponent } from '../../comment/showcommentsbyreview/showcommentsbyreview.component';
 
 @Component({
   selector: 'app-show-review',
   templateUrl: './show-review.component.html',
-  styleUrls: ['./show-review.component.css']
+  styleUrls: ['./show-review.component.css'],
+  standalone: true,
+  imports: [ShowcommentsbyreviewComponent]  // Import the child component
 })
 export class ShowReviewComponent implements OnInit {
 
   review: any = {};  // Store the review data
+  selectedReviewId: string | null = null;  // Store the reviewId to pass to ShowComponent
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
@@ -21,6 +25,7 @@ export class ShowReviewComponent implements OnInit {
   fetchReview(): void {
     const reviewId = this.route.snapshot.paramMap.get('id');
     if (reviewId) {
+      this.selectedReviewId = reviewId;  // Store the reviewId to pass to child component
       this.apiService.getReview(reviewId).subscribe(
         (data) => {
           this.review = data;
@@ -32,5 +37,4 @@ export class ShowReviewComponent implements OnInit {
       );
     }
   }
-  
 }

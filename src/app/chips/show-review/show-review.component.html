@@ -1,2 +1,14 @@
-<p>show-review works!</p>
-{{ review.name }}
+<div class="row" style="margin:auto">
+        <div class=" col col-4 p-4">
+
+                <img class="img img-fluid" src="{{ review.img }}" alt="">
+
+        </div>
+        <div class="col col-8 p-4">
+                <h1>{{ review.title }}</h1>
+                <h2>{{ review.name }}, {{ review.address }}</h2>
+                <div class="pr-2" [innerHTML]="review.review"></div>
+                <app-showcommentsbyreview [reviewId]="selectedReviewId"></app-showcommentsbyreview>
+        </div>
+       
+</div>

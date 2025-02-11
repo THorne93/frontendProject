@@ -1,6 +1,7 @@
-<div class="my-2 border border-dark" *ngFor="let comment of comments">
-    <app-likesavebar></app-likesavebar>
+<div class="my-2 border border-dark" *ngFor="let comment of comments; trackBy: trackByCommentId">
+    <app-likesavebar [commentId]="comment.id"></app-likesavebar>
     <h3 class="px-2">{{ comment.user }} says:</h3>
     <p class="px-2">{{ comment.comment }}</p>
     <p class="fw-light px-2">Posted on {{ comment.created_at | date:'dd-MM-yyy' }} at {{ comment.created_at | date: 'HH:mm' }}</p>
-</div>
+  </div>
+  

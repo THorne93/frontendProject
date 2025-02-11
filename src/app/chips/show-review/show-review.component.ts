@@ -29,7 +29,6 @@ export class ShowReviewComponent implements OnInit {
       this.apiService.getReview(reviewId).subscribe(
         (data) => {
           this.review = data;
-          console.log(this.review);  // Check the structure of the fetched review data
         },
         (error) => {
           console.error('Error fetching review:', error);

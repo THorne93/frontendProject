@@ -2,35 +2,41 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';  // Import the ApiService to fetch data
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
+import { Subscription } from 'rxjs'; // Import Subscription to unsubscribe later
+
 @Component({
   selector: 'app-navbar',
   standalone: true,  // Mark as a standalone component
-  imports: [  CommonModule, RouterModule
-  ],
+  imports: [CommonModule, RouterModule],
   providers: [ApiService],  // Provide ApiService here if it's not provided globally
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  users: any[] = [];  // Store users here
+  user: any = null;
+  private userSubscription: Subscription | undefined;
 
-  // Inject the ApiService
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private authService: AuthService) {}
 
-  // Angular's lifecycle hook that runs when the component initializes
   ngOnInit(): void {
-    this.fetchUsers();  // Fetch the users when the component initializes
+    this.userSubscription = this.authService.user$.subscribe(user => {
+      this.user = user;  // Update the user data whenever it changes
+    });
   }
 
-  // Method to fetch users from the backend
-  fetchUsers(): void {
-    this.apiService.getUsers().subscribe(
-      (data) => {
-        this.users = data;  // Store the fetched data
-      },
-      (error) => {
-        console.error('Error fetching users:', error);  // Handle any errors
-      }
-    );
+  ngOnDestroy(): void {
+    // Unsubscribe to prevent memory leaks
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
+  logout(): void {
+    this.authService.logout(); 
   }
 }

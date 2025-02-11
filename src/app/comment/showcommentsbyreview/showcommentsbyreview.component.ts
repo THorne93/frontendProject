@@ -25,6 +25,10 @@ export class ShowcommentsbyreviewComponent implements OnInit {
     this.fetchReviews();  // Fetch data if the input changes
   }
 
+  trackByCommentId(index: number, comment: any): any {
+    return comment.id;  // Track by comment id to avoid unnecessary re-renders
+  }
+
   fetchReviews(): void {
     if (!this.reviewId) return; // Ensure reviewId is set before fetching
 

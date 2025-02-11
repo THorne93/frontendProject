@@ -3,6 +3,7 @@ import { inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value)
       .subscribe((data: any) => {
         if(this.authService.isLoggedIn()){
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/home']);
         }
         console.log(data);
       })

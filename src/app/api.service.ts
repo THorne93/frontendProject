@@ -25,4 +25,7 @@ export class ApiService {
     getCommentsByReview(id: string): Observable<any> {
         return this.http.post('http://localhost:8080/comments/getallbyreview', { id });
     }
+    getUserCommentInteractionsByComment(commentId: string): Observable<any> {
+        return this.http.post('http://localhost:8080/usercomments/getallbycomment', {commentId});
+    }
 }

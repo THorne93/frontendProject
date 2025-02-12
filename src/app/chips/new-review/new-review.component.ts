@@ -87,7 +87,7 @@ export class NewReviewComponent implements AfterViewInit, OnChanges {
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
-  
+
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0]; // Store the file separately
       console.log("Selected file:", this.selectedFile.name); // Debugging log
@@ -95,41 +95,44 @@ export class NewReviewComponent implements AfterViewInit, OnChanges {
       console.warn("No file selected!");
     }
   }
-  
+
   onSubmit(): void {
-   // if (this.reviewForm.valid) {
-      const formData = new FormData();
-  
-      // Append review data as JSON
-      formData.append('reviewData', new Blob([JSON.stringify({
-        title: this.reviewForm.value.title,
-        name: this.reviewForm.value.name,
-        address: this.reviewForm.value.address,
-        rating: this.reviewForm.value.rating,
-        review: this.reviewForm.value.review
-      })], { type: 'application/json' }));
-  
-      // Append the image file
-      if (this.selectedFile) {
-        formData.append('image', this.selectedFile);
-        console.log("Image appended:", this.selectedFile.name);
-      } else {
-        console.warn("No image selected!");
+    // if (this.reviewForm.valid) {
+    const formData = new FormData();
+    let reviewContent = this.reviewForm.value.review;
+
+    // Replace all instances of &nbsp; with a regular space
+    reviewContent = reviewContent.replace(/&nbsp;/g, ' ');
+    // Append review data as JSON
+    formData.append('reviewData', new Blob([JSON.stringify({
+      title: this.reviewForm.value.title,
+      name: this.reviewForm.value.name,
+      address: this.reviewForm.value.address,
+      rating: this.reviewForm.value.rating,
+      review: reviewContent
+    })], { type: 'application/json' }));
+
+    // Append the image file
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile);
+      console.log("Image appended:", this.selectedFile.name);
+    } else {
+      console.warn("No image selected!");
+    }
+
+    // Submit the form data
+    this.authService.submitReview(formData).subscribe(
+      (data: any) => {
+        console.log("Review submitted successfully!");
+        this.router.navigate(['/home']);
+      },
+      (error) => {
+        console.error("Error submitting review:", error);
       }
-  
-      // Submit the form data
-      this.authService.submitReview(formData).subscribe(
-        (data: any) => {
-          console.log("Review submitted successfully!");
-          this.router.navigate(['/home']);
-        },
-        (error) => {
-          console.error("Error submitting review:", error);
-        }
-      );
-  //  } else {
-  //    console.log("Form is invalid!");
+    );
+    //  } else {
+    //    console.log("Form is invalid!");
     //}
   }
-  
+
 }

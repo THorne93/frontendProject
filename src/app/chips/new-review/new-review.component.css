@@ -1,0 +1,43 @@
+/* Make sure the editor container is properly sized */
+#editorContainer {
+    min-height: 200px;  /* Adjust height as needed */
+    border: 1px solid #ccc; /* Add a border for visibility */
+    padding: 10px; /* Add padding to the editor */
+    background-color: #fff; /* Background color */
+    font-family: 'Arial', sans-serif; /* Font family */
+  }
+  
+  /* Optional: Customize the toolbar appearance */
+  .ql-toolbar {
+    background-color: #f4f4f4; /* Toolbar background */
+    padding: 5px; /* Padding around the toolbar */
+    border-radius: 4px; /* Rounded corners for toolbar */
+  }
+  
+  /* Optional: Style for the editor buttons */
+  .ql-toolbar button {
+    background-color: #fff; /* Button background color */
+    border: 1px solid #ddd; /* Button border */
+    margin-right: 5px; /* Spacing between buttons */
+    padding: 5px 10px; /* Button padding */
+    border-radius: 4px; /* Rounded corners for buttons */
+  }
+  
+  .ql-toolbar button:hover {
+    background-color: #e0e0e0; /* Button hover effect */
+  }
+  
+  /* Make sure the editor's content area is visible */
+  .ql-container {
+    min-height: 150px;  /* Adjust the minimum height */
+    font-size: 14px;  /* Adjust font size */
+    line-height: 1.5;
+    background-color: #fff;  /* Background for the text area */
+    padding: 10px;  /* Padding for content */
+    border-radius: 4px; /* Rounded corners for content area */
+  }
+  #editorContainer {
+    min-height: 200px; /* Ensure the editor has some height */
+    border: 1px solid #ccc; /* Optional: adds a border to the editor */
+  }
+  

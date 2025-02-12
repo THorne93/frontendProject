@@ -8,14 +8,15 @@ import { IndexComponent } from './chips/index/index.component';  // Import Index
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NavbarComponent, HttpClientModule, IndexComponent, RouterModule],  // Add RouterModule here
+  imports: [NavbarComponent, HttpClientModule, RouterModule],  // Add RouterModule here
   providers: [ApiService],  // Provide the ApiService globally
   template: `
     <app-navbar></app-navbar>
-    <router-outlet></router-outlet> <!-- This will display the routed component -->
+    <router-outlet></router-outlet>
   `,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'Chip Advisor';
+  
 }

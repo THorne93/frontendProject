@@ -13,7 +13,7 @@
           <a class="nav-item nav-link fw-bold" >Welcome {{ user.username }}</a>
           <a *ngIf="user?.role === 'admin'" href="#" class="nav-item nav-link">User Management</a>
           <a *ngIf="user?.role === 'admin'" href="#" class="nav-item nav-link">Review Management</a>
-          <a *ngIf="user?.role === 'admin'" href="#" class="nav-item nav-link">New Review</a>
+          <a *ngIf="user?.role === 'admin'" routerLink="/review/new" class="nav-item nav-link">New Review</a>
           <a *ngIf="user?.role === 'user'" href="#" class="nav-item nav-link">My Comments</a>
           
         </div>

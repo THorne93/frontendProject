@@ -8,11 +8,21 @@ import { catchError, switchMap, tap, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private userSubject = new BehaviorSubject<any>(null); // Holds the current user data
+  private userSubject = new BehaviorSubject<any>(this.getUserFromStorage()); // Initialize with stored user
   user$ = this.userSubject.asObservable(); // Observable to subscribe to in components
   httpClient = inject(HttpClient);
   baseUrl = 'http://localhost:8080/';
   router = inject(Router);
+
+  constructor() {
+    // You can add additional logic here if needed
+  }
+
+  // Helper method to get user from localStorage
+  private getUserFromStorage(): any {
+    const user = localStorage.getItem('authUser');
+    return user ? JSON.parse(user) : null;
+  }
 
   signup(data: any) {
     return this.httpClient.post(`${this.baseUrl}users/new`, data);
@@ -49,8 +59,15 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return localStorage.getItem('authUser') !== null;
+    return this.userSubject.getValue() !== null; // Check the userSubject state directly
   }
 
-  constructor() {}
+  submitReview(data: FormData) {
+    return this.httpClient.post(`${this.baseUrl}reviews/new`, data, {
+      headers: {
+        // DO NOT set Content-Type manually. The browser will set it to multipart/form-data.
+      }
+    });
+  }
+  
 }

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { ShowReviewComponent } from './chips/show-review/show-review.component';
+import { NewReviewComponent } from './chips/new-review/new-review.component';
 import { IndexComponent } from './chips/index/index.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
@@ -12,5 +13,6 @@ export const routes: Routes = [
     {path:'signup',component: SignupComponent},
     {path:'admin',component: AdminComponent, canActivate: [authGuard]},
     {path: 'home', component: IndexComponent},
+    {path: 'review/new', component: NewReviewComponent},
     {path: 'review/:id', component: ShowReviewComponent}
 ];

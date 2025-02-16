@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { catchError, switchMap, tap, throwError } from 'rxjs';
 
 @Injectable({
@@ -30,8 +30,8 @@ export class AuthService {
 
   login(data: any) {
     return this.httpClient.post<{ result: string }>(
-      `${this.baseUrl}users/authenticate`, 
-      data, 
+      `${this.baseUrl}users/authenticate`,
+      data,
       { withCredentials: true }
     ).pipe(
       switchMap(response => {
@@ -62,12 +62,49 @@ export class AuthService {
     return this.userSubject.getValue() !== null; // Check the userSubject state directly
   }
 
+  getUserId() {
+    const authUser = localStorage.getItem('authUser');
+    if (authUser) {
+      try {
+        const user = JSON.parse(authUser);
+        return user.id;
+      } catch (error) {
+        console.error("Error parsing authUser from localStorage:", error);
+        return null;
+      }
+    }
+    return null;
+  }
+
+
   submitReview(data: FormData) {
     return this.httpClient.post(`${this.baseUrl}reviews/new`, data, {
       headers: {
         // DO NOT set Content-Type manually. The browser will set it to multipart/form-data.
       }
     });
+  }
+  makeComment(data: FormData) {
+    return this.httpClient.post(`${this.baseUrl}comments/new`, data, {
+      headers: {
+      }
+    });
+  }
+
+  updateInteraction(userId: string, commentId: string, action: string) {
+    return this.httpClient.put(`${this.baseUrl}usercomments/changeinteraction`, { 
+      userId, 
+      commentId, 
+      change: action 
+    }); // RETURN the Observable
+  }
+  
+  saveComment(userId: string, commentId: string) {
+    return this.httpClient.post(`${this.baseUrl}usercomments/newsave`, {  userId, commentId }); 
+  }
+  
+  likeComment(userId: string, commentId: string) {
+    return this.httpClient.post(`${this.baseUrl}usercomments/newlike`, { userId, commentId }); 
   }
   
 }

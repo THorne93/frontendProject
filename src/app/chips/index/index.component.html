@@ -1,4 +1,4 @@
-<div class="row align-items-center mt-2 ps-2">
+<div class="row align-items-center mt-2 ps-2 mx-0">
     <div class="col-auto">
         <label for="sortSelect" class="form-label m-0">Sort by score</label>
     </div>
@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row mx-0">
     <div *ngFor="let review of reviews" class="col-lg-2 col-md-4 col-sm-6 col-12 mb-3">
         <div class="card" (click)="navigateToReview(review.id)" style="cursor: pointer;" class="p-5 border mt-2">
             <img [src]="'http://localhost:8080' + review.img" class="img img-fluid card-img-top rounded" alt="User Image">

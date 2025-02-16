@@ -1,0 +1,4 @@
+.scrollable {
+    height: 800px; /* set a fixed height for the div */
+    overflow-y: scroll; /* enable vertical scrollbar */
+  }

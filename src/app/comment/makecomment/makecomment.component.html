@@ -1,0 +1,10 @@
+<form class="p-4 border" [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+    <h5>Add a comment</h5>
+    <div data-mdb-input-init class="form-outline mb-4">
+        <textarea class="form-control" formControlName="comment" id="comment" rows="4" maxlength="255" placeholder="Write your comment here..."></textarea>
+    </div>
+    <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger" [disabled]="commentForm.invalid">
+        Send
+        <i class="fas fa-long-arrow-alt-right ms-1"></i>
+    </button>
+</form>

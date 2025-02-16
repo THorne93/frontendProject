@@ -1,8 +1,19 @@
 <div class="toolbar d-flex align-items-center p-2 border-bottom">
-    <button class="btn btn-light me-2">
-        <i class="bi bi-hand-thumbs-up"></i>({{ likeCount }})
+    <!-- Like Button -->
+    <button class="btn btn-light me-2" (click)="onLike()">
+        <i *ngIf="!likedByUser; else liked" class="bi bi-hand-thumbs-up"></i>
+        <ng-template #liked>
+            <i class="bi bi-hand-thumbs-up-fill"></i> 
+        </ng-template>
+        ({{ likeCount }})
     </button>
-    <button class="btn btn-light">
-        <i class="bi bi-star"></i>({{ saveCount}})
+
+    <!-- Save Button -->
+    <button class="btn btn-light" (click)="onSave()">
+        <i *ngIf="!savedByUser; else saved" class="bi bi-star"></i>
+        <ng-template #saved>
+            <i class="bi bi-star-fill"></i> 
+        </ng-template>
+        ({{ saveCount }})
     </button>
 </div>

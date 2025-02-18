@@ -81,7 +81,7 @@ export class LikesavebarComponent implements OnInit, OnDestroy {  // Implement O
       return; // Exit the function early if either value is null
     }
     const commentId = this.commentId;
-    
+
     this.apiService.getUserCommentInteractionsByCommentAndUser(commentId, userId)
       .subscribe(
         (response: any) => {
@@ -106,7 +106,8 @@ export class LikesavebarComponent implements OnInit, OnDestroy {  // Implement O
       return; // Exit the function early if either value is null
     }
     const commentId = this.commentId;
-  
+    console.log("userId:", userId, "commentId:", this.commentId);
+
     this.apiService.getUserCommentInteractionsByCommentAndUser(commentId, userId)
       .subscribe(
         (response: any) => {

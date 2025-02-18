@@ -1,0 +1,27 @@
+<div class="row my-2 px-0 mx-0">
+    <div class="col col-8 mx-auto">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Member since</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{user.username}}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.surnames }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.date_created }}</td>
+                    <td>TODO</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>

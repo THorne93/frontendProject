@@ -1,4 +1,4 @@
-<div class="scrollable"> 
+<div class="scrollable mb-4 pb-4"> 
   <div class="my-2 border border-dark" *ngFor="let comment of comments; trackBy: trackByCommentId">
     <app-likesavebar [commentId]="comment.id"></app-likesavebar>
     <h3 class="px-2">{{ comment.user }} says:</h3>

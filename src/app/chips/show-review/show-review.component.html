@@ -5,10 +5,14 @@
 
         </div>
         <div class="col col-8 p-4">
-                <h1>{{ review.title }}</h1><button *ngIf="user?.role === 'admin'" (click)="navigateToEdit(review.id)">Edit</button>
+                <span><h1 class="d-inline">{{ review.title }}</h1>
+                <a *ngIf="user?.role === 'admin'" (click)="navigateToEdit(review.id)"  style="cursor: pointer;">
+                        <i class="bi bi-pencil-square h3 text-secondary"></i>
+                </a></span>
                 <h2>{{ review.name }}, {{ review.address }}</h2>
-                <div class="pr-2" style="display: block; width: 100%; word-break: normal; overflow-wrap: break-word;" [innerHTML]="review.review"></div>
+                <div class="pr-2" style="display: block; width: 100%; word-break: normal; overflow-wrap: break-word;"
+                        [innerHTML]="review.review"></div>
                 <app-showcommentsbyreview [reviewId]="selectedReviewId"></app-showcommentsbyreview>
         </div>
-       
+
 </div>

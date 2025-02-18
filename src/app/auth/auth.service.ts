@@ -100,11 +100,12 @@ export class AuthService {
   }
   
   saveComment(userId: string, commentId: string) {
-    return this.httpClient.post(`${this.baseUrl}usercomments/newsave`, {  userId, commentId }); 
-  }
+    return this.httpClient.post(`${this.baseUrl}usercomments/newsave`, { id_user: userId, id_comment: commentId }); 
+}
+
   
   likeComment(userId: string, commentId: string) {
-    return this.httpClient.post(`${this.baseUrl}usercomments/newlike`, { userId, commentId }); 
+    return this.httpClient.post(`${this.baseUrl}usercomments/newlike`, { id_user: userId, id_comment: commentId }); 
   }
   
 }

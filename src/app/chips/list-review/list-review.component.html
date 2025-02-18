@@ -1,0 +1,32 @@
+<main>
+<div class="row px-0 mx-0 my-4">
+    <div class="col col-7 mx-auto">
+        <table class="table table-hover border text-center">
+            <thead>
+                <tr>
+                    <th class="col col-1" scope="col"></th>
+                    <th class="col col-2" scope="col">Title</th>
+                    <th class="col col-2" scope="col">Location</th>
+                    <th class="col col-1" scope="col">Rating</th>
+                    <th class="col col-1" scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let review of reviews">
+                    <td> <img [src]="'http://localhost:8080' + review.img" width="150" height="120"
+                            class="img-thumbnail img-fluid square-img" alt="User Image"></td>
+                    <td>{{ review.title }}</td>
+                    <td>{{ review.address }}</td>
+                    <td>{{ review.rating }}</td>
+                    <td >
+                        <a class="mx-2" href=""><i class="bi bi-pencil-square h3 text-warning"></i></a>
+                        <a class="mx-2" href=""><i class="bi bi-trash3 h3 text-danger"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+</main>

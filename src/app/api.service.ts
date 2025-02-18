@@ -12,7 +12,6 @@ export class ApiService {
 
     // Define a method to fetch users from the API
     getUsers(): Observable<any> {
-        // Make a GET request to your backend API
         return this.http.get('http://localhost:8080/users/all');  // Adjust this URL based on your backend's endpoint
     }
 

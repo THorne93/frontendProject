@@ -2,17 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-index',
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   standalone: true,
   providers: [ApiService],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css'
 })
 export class IndexComponent {
-
+  sortByFirst: string = '';
   reviews: any[] = [];  // Store users here
 
   // Inject the ApiService

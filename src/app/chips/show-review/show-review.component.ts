@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
+import { RouterModule } from '@angular/router';
+
 import { ActivatedRoute } from '@angular/router';  
 import { ShowcommentsbyreviewComponent } from '../../comment/showcommentsbyreview/showcommentsbyreview.component';
 import { MakecommentComponent } from '../../comment/makecomment/makecomment.component';

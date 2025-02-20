@@ -9,7 +9,7 @@ import { AdminComponent } from './user/admin/admin.component';
 import { authGuard } from './auth/auth.guard';
 import { ListComponent } from './user/list/list.component';
 import { ListReviewComponent } from './chips/list-review/list-review.component';
-
+import { EditComponent } from './user/edit/edit.component';
 export const routes: Routes = [
     {path:'',redirectTo: '/home',pathMatch:'full'},
     {path:'login',component: LoginComponent},
@@ -20,6 +20,7 @@ export const routes: Routes = [
     {path: 'review/:id', component: ShowReviewComponent},
     {path: 'review/:id/edit', component: EditReviewComponent},
     {path: 'admin/users', component: ListComponent},
+    {path: 'admin/users/:id/edit', component: EditComponent},
     {path: 'admin/reviews', component: ListReviewComponent}
 
 ];

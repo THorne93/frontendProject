@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-list-review',
   imports: [CommonModule],
@@ -9,10 +10,10 @@ import { CommonModule } from '@angular/common';
 })
 export class ListReviewComponent implements OnInit {
   reviews: any[] = [];
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-      this.fetchReviews();
+    this.fetchReviews();
   }
 
   fetchReviews(): void {
@@ -22,6 +23,20 @@ export class ListReviewComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching reviews:', error);  // Handle any errors
+      }
+    );
+  }
+  navigateToEdit(reviewId: string): void {
+    this.router.navigate(['/review', reviewId, 'edit']);
+  }
+
+  delete(reviewId: string): void {
+    this.apiService.deleteReview(reviewId).subscribe(
+      (data) => {
+        this.fetchReviews();
+      },
+      (error) => {
+
       }
     );
   }

@@ -106,17 +106,14 @@ export class LikesavebarComponent implements OnInit, OnDestroy {  // Implement O
       return; // Exit the function early if either value is null
     }
     const commentId = this.commentId;
-    console.log("userId:", userId, "commentId:", this.commentId);
 
     this.apiService.getUserCommentInteractionsByCommentAndUser(commentId, userId)
       .subscribe(
         (response: any) => {
           if (response.result === "true") {
-            console.log("The interaction exists");
             this.authService.updateInteraction(userId, commentId, 'liked')
               .subscribe(() => this.likesaverefresh.refreshBar()); // Wait before refreshing
           } else {
-            console.log("The interaction doesn't exist");
             this.authService.likeComment(userId, commentId)
               .subscribe(() => this.likesaverefresh.refreshBar()); // Wait before refreshing
           }

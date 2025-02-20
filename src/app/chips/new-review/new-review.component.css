@@ -1,14 +1,16 @@
 /* Make sure the editor container is properly sized */
 #editorContainer {
     min-height: 200px;  /* Adjust height as needed */
+    width: 100%;
     border: 1px solid #ccc; /* Add a border for visibility */
-    padding: 10px; /* Add padding to the editor */
+
     background-color: #fff; /* Background color */
     font-family: 'Arial', sans-serif; /* Font family */
   }
   
   /* Optional: Customize the toolbar appearance */
   .ql-toolbar {
+    width: 100%;
     background-color: #f4f4f4; /* Toolbar background */
     padding: 5px; /* Padding around the toolbar */
     border-radius: 4px; /* Rounded corners for toolbar */
@@ -29,6 +31,7 @@
   
   /* Make sure the editor's content area is visible */
   .ql-container {
+    width: 100% !important;
     min-height: 150px;  /* Adjust the minimum height */
     font-size: 14px;  /* Adjust font size */
     line-height: 1.5;

@@ -21,7 +21,7 @@ export class ShowReviewComponent implements OnInit {
   user: any = null;
   review: any = {};  // Store the review data
   private userSubscription: Subscription | undefined;
-  selectedReviewId: string | null = null;  // Store the reviewId to pass to ShowComponent
+  selectedReviewId: string | null = null;  
 
   constructor(private apiService: ApiService, private route: ActivatedRoute,private router: Router, private authService: AuthService) {}
 

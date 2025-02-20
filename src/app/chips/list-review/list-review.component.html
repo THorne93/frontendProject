@@ -1,7 +1,7 @@
 <main>
 <div class="row px-0 mx-0 my-4">
     <div class="col col-7 mx-auto">
-        <table class="table table-hover border text-center">
+        <table class="table table-hover border text-center mb-5">
             <thead>
                 <tr>
                     <th class="col col-1" scope="col"></th>
@@ -19,8 +19,8 @@
                     <td>{{ review.address }}</td>
                     <td>{{ review.rating }}</td>
                     <td >
-                        <a class="mx-2" href=""><i class="bi bi-pencil-square h3 text-warning"></i></a>
-                        <a class="mx-2" href=""><i class="bi bi-trash3 h3 text-danger"></i></a>
+                        <a class="mx-2 pointer" (click)="navigateToEdit(review.id)"><i class="bi bi-pencil-square h3 text-warning"></i></a>
+                        <a class="mx-2 pointer" (click)="delete(review.id)"><i class="bi bi-trash3 h3 text-danger"></i></a>
                     </td>
                 </tr>
             </tbody>

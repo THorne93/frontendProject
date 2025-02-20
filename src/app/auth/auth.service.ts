@@ -80,7 +80,20 @@ export class AuthService {
   submitReview(data: FormData) {
     return this.httpClient.post(`${this.baseUrl}reviews/new`, data, {
       headers: {
-        // DO NOT set Content-Type manually. The browser will set it to multipart/form-data.
+      }
+    });
+  }
+  editReview(data: FormData) {
+    return this.httpClient.put(`${this.baseUrl}reviews/edit`, data, {
+      headers: {
+      }
+    });
+  }
+
+  editUser(updatedUser: any): Observable<any> {
+    return this.httpClient.put(`${this.baseUrl}users/edit`, updatedUser, {
+      headers: {
+        'Content-Type': 'application/json'
       }
     });
   }
@@ -92,20 +105,20 @@ export class AuthService {
   }
 
   updateInteraction(userId: string, commentId: string, action: string) {
-    return this.httpClient.put(`${this.baseUrl}usercomments/changeinteraction`, { 
-      userId, 
-      commentId, 
-      change: action 
+    return this.httpClient.put(`${this.baseUrl}usercomments/changeinteraction`, {
+      userId,
+      commentId,
+      change: action
     }); // RETURN the Observable
   }
-  
-  saveComment(userId: string, commentId: string) {
-    return this.httpClient.post(`${this.baseUrl}usercomments/newsave`, { id_user: userId, id_comment: commentId }); 
-}
 
-  
-  likeComment(userId: string, commentId: string) {
-    return this.httpClient.post(`${this.baseUrl}usercomments/newlike`, { id_user: userId, id_comment: commentId }); 
+  saveComment(userId: string, commentId: string) {
+    return this.httpClient.post(`${this.baseUrl}usercomments/newsave`, { id_user: userId, id_comment: commentId });
   }
-  
+
+
+  likeComment(userId: string, commentId: string) {
+    return this.httpClient.post(`${this.baseUrl}usercomments/newlike`, { id_user: userId, id_comment: commentId });
+  }
+
 }

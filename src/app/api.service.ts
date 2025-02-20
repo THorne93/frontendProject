@@ -14,7 +14,9 @@ export class ApiService {
     getUsers(): Observable<any> {
         return this.http.get('http://localhost:8080/users/all');  // Adjust this URL based on your backend's endpoint
     }
-
+    getUser(id: string): Observable<any> {
+        return this.http.post('http://localhost:8080/users/getone', { id });
+    }
     getReviews(): Observable<any> {
         return this.http.get('http://localhost:8080/reviews/all');
     }
@@ -25,11 +27,22 @@ export class ApiService {
         return this.http.post('http://localhost:8080/comments/getallbyreview', { id });
     }
     getUserCommentInteractionsByComment(commentId: string): Observable<any> {
-        return this.http.post('http://localhost:8080/usercomments/getallbycomment', {commentId});
+        return this.http.post('http://localhost:8080/usercomments/getallbycomment', { commentId });
     }
     getUserCommentInteractionsByCommentAndUser(commentId: string, userId: string): Observable<any> {
-        return this.http.post('http://localhost:8080/usercomments/getbycommentanduser', {commentId, userId});
+        return this.http.post('http://localhost:8080/usercomments/getbycommentanduser', { commentId, userId });
     }
 
-    
+    deleteReview(id: string): Observable<any> {
+        return this.http.delete('http://localhost:8080/reviews/delete', {
+            body: { id }
+        });
+    }
+    deleteUser(id: string): Observable<any> {
+        return this.http.delete('http://localhost:8080/users/delete', {
+            body: { id }
+        });
+    }
+
+
 }

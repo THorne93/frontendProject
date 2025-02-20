@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-list',
   imports: [CommonModule],
@@ -10,7 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ListComponent implements OnInit {
   users: any[] = [];
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private router: Router) { }
   ngOnInit(): void {
     this.fetchUsers();
     
@@ -24,6 +25,21 @@ export class ListComponent implements OnInit {
       },
       (error) => {
         console.error(error);
+      }
+    );
+  }
+
+  navigateToEdit(userId: string): void {
+    this.router.navigate(['/admin/users', userId, 'edit']);
+  }
+
+  delete(reviewId: string): void {
+    this.apiService.deleteUser(reviewId).subscribe(
+      (data) => {
+        this.fetchUsers();
+      },
+      (error) => {
+
       }
     );
   }

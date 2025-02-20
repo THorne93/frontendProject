@@ -5,10 +5,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { QuillModule } from 'ngx-quill';  // Import Quill module
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import Quill from 'quill'; // Import Quill for direct manipulation
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-new-review',
-  imports: [ReactiveFormsModule, RouterModule, QuillModule, FormsModule],  // Add FormsModule
+  imports: [ReactiveFormsModule, RouterModule, QuillModule, FormsModule, CommonModule],  // Add FormsModule
   templateUrl: './new-review.component.html',
   styleUrls: ['./new-review.component.css']
 })
@@ -17,6 +18,7 @@ export class NewReviewComponent implements AfterViewInit, OnChanges {
   router = inject(Router);
   cdr: ChangeDetectorRef;
   selectedFile: File | null = null;
+  selectedImage: string | ArrayBuffer | null = null;
 
   // Reactive form setup for the review
   reviewForm: FormGroup;
@@ -27,7 +29,7 @@ export class NewReviewComponent implements AfterViewInit, OnChanges {
       [{ header: [1, 2, false] }],
       ['bold', 'italic', 'underline', 'strike'],
       [{ list: 'ordered' }, { list: 'bullet' }],
-      ['link', 'image', 'video'],
+      ['link'],
       [{ align: [] }],
       [{ color: [] }, { background: [] }],
       ['clean'],
@@ -87,14 +89,23 @@ export class NewReviewComponent implements AfterViewInit, OnChanges {
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
-
-    if (input.files && input.files.length > 0) {
-      this.selectedFile = input.files[0]; // Store the file separately
-      console.log("Selected file:", this.selectedFile.name); // Debugging log
-    } else {
-      console.warn("No file selected!");
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+  
+      console.log("File selected:", file); // ✅ Check if a file is detected
+  
+      const reader = new FileReader();
+      
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        console.log("File read:", e.target?.result); // ✅ Check if FileReader worked
+        this.selectedImage = e.target?.result ?? null;
+      };
+  
+      reader.readAsDataURL(file);
     }
   }
+  
+
 
   onSubmit(): void {
     // if (this.reviewForm.valid) {
@@ -130,9 +141,9 @@ export class NewReviewComponent implements AfterViewInit, OnChanges {
         console.error("Error submitting review:", error);
       }
     );
-    //  } else {
-    //    console.log("Form is invalid!");
-    //}
+   
   }
+
+
 
 }

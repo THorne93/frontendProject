@@ -8,7 +8,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(253, 101, 133, 1);
+    background-image: url("/assets/images/chipbackground.jpg");
+    background-size: cover;
 }
 
 .signup-card {

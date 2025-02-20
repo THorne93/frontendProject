@@ -1,0 +1,9 @@
+.square-img {
+    object-fit: cover;
+    width: 150px;
+    height: 120px;
+}
+
+.pointer {
+    cursor: pointer; /* Makes it clear it's clickable */
+}
